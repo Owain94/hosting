@@ -1,0 +1,22 @@
+name: OpenOSRS - Mirror
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    name: Mirror
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Commit files
+        run: |
+          git config --local user.email "openosrs.github@gmail.com"
+          git config --local user.name "OpenOSRS"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.OpenOSRS }}
